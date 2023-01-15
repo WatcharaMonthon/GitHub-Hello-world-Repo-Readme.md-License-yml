@@ -1,16 +1,15 @@
- " Hello - World " , " CD ", " hello World " 
+" Hello - World " ,
 
+" Hi there ", MY Name's 
 
+" WATCHARA MONTHON " , 
 
- " Hi there "   
-• "MY Name's: WATCHARA MONTHON" 
 I gained valuable experience both academically and professionally.  during my studies  I have had the opportunity to learn  Working on a variety of projects with leading organizations  I learned more about Designer, Machine Learning, Engineering Soft ware.These projects have given me excellent knowledge of computer-aided management, 
 
 
 
-  "การเขียนโค้ดใน Github": 
 
- "เขียนรหัสบางอย่างเริ่มต้นด้วย , Hello,  World " 
+ "การเขียนโค้ดใน Github":"เขียนรหัสบางอย่างเริ่มต้นด้วย , Hello,  World " 
 
   1.  เปิดพรอมต์คำสั่งและซีดีไปยังโฮมไดเร็กตอรี่ของคุณ
 
