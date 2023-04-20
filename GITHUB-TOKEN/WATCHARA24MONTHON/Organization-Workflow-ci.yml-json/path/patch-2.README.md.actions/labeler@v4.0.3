@@ -1,0 +1,176 @@
+ " Hello " 
+ " Welcome to My Repository,GITHUB-TOKEN,Workflow.README.md "
+# GitHub-Hello-world-Repo-Readme.md-License-yml
+Github-WATCHARA24MONTHON-organization-ci.yml.json-actions-github.com-google-license-check-labeler@v4.0.3-README.md 
+The metadata for the workflow file is named: WATCHARA24MONTHON-organization-ci.properties.json.
+Workflow file name: WATCHARA24MONTHON-organization-ci.yml: json 
+ { "name": "WATCHARA24MONTHON Organization Workflow",
+     "description": "WATCHARA24MONTHON Organization CI starter workflow.",
+     "iconName": "example-icon",
+     "categories": [ "Go" ],
+     "filePatterns": ["package.json$", "^Dockerfile", ".*\\.md$" ] } 
+Filename : example-icon.-actions/labeler@v4.0.3 -README.md-WATCHARA24MONTHON  Referred to as: example-icon.
+There is metadata for a workflow file named:
+WATCHARA24MONTHON-organization-ci.properties.json-workflow-templates-README.md-patch-1.
+
+ WATCHARA24MONTHON-organization-ci.yml.Json-workflow-templates-README.md-patch-2. 
+
+{
+    "name": "WATCHARA24MONTHON Organization Workflow",
+    "description": "WATCHARA24MONTHON Organization CI starter workflow.",
+    "iconName": "example-icon",
+    "categories": [
+        "Go"
+    ],
+    "filePatterns": [
+        "package.json$",
+        "^Dockerfile",
+        ".*\\.md$"
+    ]
+} 
+{
+1.) GITHUB_TOKEN value for repo-token input parameter:
+ counterpart
+  name: Pull request labeler
+  on: [ pull_request_target ]
+
+  permissions:
+    contents: read
+    pull-requests: write
+
+  jobs:
+    triage:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/labeler@v4
+          with:
+            repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+
+ counterpart
+ name: Pull request labeler
+ on: [ pull_request_target ]
+
+ permissions:
+   contents: read
+   pull-requests: write
+
+ jobs:
+   triage:
+     runs-on: ubuntu-latest
+     steps:
+       - uses: actions/labeler@v4
+         with:
+           repo-token: ${{ secrets.GITHUB_TOKEN }} 
+
+
+
+2.) 
+
+ GitHub REST API:
+
+name: Create issue on commit
+
+on: [ push ]
+
+jobs:
+  create_issue:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Create issue using REST API
+        run: |
+          curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/issues \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'content-type: application/json' \
+          --data '{
+            "title": "Automated issue for commit: ${{ github.sha }}",
+            "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n The commit hash was: _${{ github.sha }}_."
+            }' \
+          --fail 
+}
+          
+[
+The following table shows the permissions that GITHUB_TOKEN is granted by default.  Someone with administrative permissions to an organization, organization, or storage.  Default permissions can be set to Allow or Restricted.  For information on how to set the default permissions for GITHUB_TOKENOrganization, Organization, or Repository, see " Enforcing policies for GitHub Actions in your organization ", " Disabling or restricting GitHub Actions for your organization " or ".  Managing GitHub Actions settings for repositories"
+
+ Scope Default Access
+ (Allow) default access
+ (Limited) Maximum access for
+ pull request from
+ Fragmented Public Storage [1]
+ action read write no read
+ check read write no read
+ Content read write read read
+ deployment read write none read
+ Token Code None None Read
+ problem read write no read
+ metadata read read read
+ package read write read read
+ page read write no read
+ Pull Request Read Write None Read
+ Project Storage Read Write No Read
+ Security Event Read Write None Read
+ Status Read Write None Read
+ [1] The private repository can control whether a pull request from the fork can run the workflow.  and configure the permissions assigned to GITHUB_TOKEN to  For more information, see "Managing GitHub Actions Settings for Repositories".
+
+ Note: Workflows invoked by Dependabot pull requests run as if they were from a separate repository, so they use the GITHUB_TOKEN.  Running these workflows cannot access any secrets.  For information on strategies to secure these workflows, see " Hardening Security for GitHub Actions ".
+
+ Correction of permissions for GITHUB_TOKEN
+You can modify the permissions for the GITHUB_TOKEN in individual workflow files. If the default permissions for the GITHUB_TOKEN are restrictive, you may have to elevate the permissions to allow some actions and commands to run successfully. If the default permissions are permissive, you can edit the workflow file to remove some permissions from the GITHUB_TOKEN. As a good security practice, you should grant the GITHUB_TOKEN the least required access.
+
+You can see the permissions that GITHUB_TOKEN had for a specific job in the "Set up job" section of the workflow run log. For more information, see "Using workflow run logs."
+
+You can use the permissions key in your workflow file to modify permissions for the GITHUB_TOKEN for an entire workflow or for individual jobs. This allows you to configure the minimum required permissions for a workflow or job. When the permissions key is used, all unspecified permissions are set to no access, with the exception of the metadata scope, which always gets read access.
+
+You can use the permissions key to add and remove read permissions for forked repositories, but typically you can't grant write access. The exception to this behavior is where an admin user has selected the Send write tokens to workflows from pull requests option in the GitHub Actions settings. For more information, see "Managing GitHub Actions settings for a repository."
+
+The two workflow examples earlier in this article show the permissions key being used at the workflow level, and at the job level. In Example 1 the two permissions are specified for the entire workflow. In Example 2 write access is granted for one scope for a single job.
+
+For full details of the permissions key, see "Workflow syntax for GitHub Actions."
+
+How the permissions are calculated for a workflow job
+The permissions for the GITHUB_TOKEN are initially set to the default setting for the enterprise, organization, or repository. If the default is set to the restricted permissions at any of these levels then this will apply to the relevant repositories. For example, if you choose the restricted default at the organization level then all repositories in that organization will use the restricted permissions as the default. The permissions are then adjusted based on any configuration within the workflow file, first at the workflow level and then at the job level. Finally, if the workflow was triggered by a pull request from a forked repository, and the Send write tokens to workflows from pull requests setting is not selected, the permissions are adjusted to change any write permissions to read only.
+
+Granting additional permissions
+If you need a token that requires permissions that aren't available in the GITHUB_TOKEN, you can create a personal access token and set it as a secret in your repository:
+
+Use or create a token with the appropriate permissions for that repository. For more information, see "Creating a personal access token."
+Add the token as a secret in your workflow's repository, and refer to it using the ${{ secrets.SECRET_NAME }} syntax. For more information, see "Encrypted secrets."
+Further reading
+"Resources in the REST API"
+Help and support
+Did this doc help you?
+
+Privacy policy
+Help us make these docs great!
+All GitHub docs are open source. See something that's wrong or unclear? Submit a pull request.
+]
+
+GITHUB-TOKEN-WATCHARA24MONTHON-organization-ci.properties.json-workflow-templates-README.md-patch-1.
+
+
+ GITHUB-TOKEN-WATCHARA24MONTHON-organization-ci.yml.Json-workflow-templates-README.md-patch-2.
+
+sudo mkdir -p /export/mirror/opencsw
+ sudo chown $LOGNAME /export/mirror/opencsw
+ rsync -aH --
+
+ Remove rsync://rsync.opencsw.org/opencsw/ /export/mirror/opencsw 
+
+ The opencsw-mirror directory can be shared via HTTP or via NFS to the pkgutil client using http://myserver/opencsw-mirror/.
+ 
+ for HTTP and
+ 
+  file:///myserver/opencsw-mirror
+  For NFS, it's a mirror option in  configuration file of
+
+  pkgutil/etc/opt/csw/pkgutil.conf 
+  
+"github.com/google/licensecheck” 
+
+    "Creative Commons License": 
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. 
+ --> 
+ 
